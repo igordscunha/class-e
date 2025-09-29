@@ -1,0 +1,19 @@
+services:
+	backend:
+		build:
+			context: ./class-e-back
+		ports:
+			- "5000:5000"
+		env_file:
+			- ./class-e-back/.env
+		volumes:
+			- ./class-e-back:/app
+
+	web:
+		build:
+			context: ./class-e-web
+		ports:
+			- "3000:80"
+		depends_on:
+			- backend
+		volumes: ./class-e-web:/app
